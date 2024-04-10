@@ -1,6 +1,5 @@
 package com.bloomtech.socialfeed.models;
 
-import com.bloomtech.socialfeed.App;
 import com.bloomtech.socialfeed.observerpattern.OUserFeed;
 
 import java.util.ArrayList;
@@ -79,6 +78,10 @@ public class User {
                 '}';
     }
 
+    /**
+     *
+     * @param usernameToFollow is the username of the user to be followed by the user follower.
+     */
     public void follow(String usernameToFollow) {
         following.add(usernameToFollow);
     }

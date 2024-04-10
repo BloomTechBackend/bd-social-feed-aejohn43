@@ -2,19 +2,10 @@ package com.bloomtech.socialfeed.repositories;
 
 import com.bloomtech.socialfeed.models.User;
 import com.bloomtech.socialfeed.validators.UserInfoValidator;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class UserRepository {
     private static final String USER_DATA_PATH = "src/resources/UserData.json";
@@ -31,12 +22,23 @@ public class UserRepository {
         return allUsers;
     }
 
+    /**
+     *
+     * @param username is the user's to be find's username.
+     * @return the User object found;
+     */
+
     public Optional<User> findByUsername(String username) {
         return getAllUsers()
                 .stream()
                 .filter(u -> u.getUsername().equals(username))
                 .findFirst();
     }
+
+    /**
+     *
+     * @param user is the user to be saved.
+     */
 
     public void save(User user) {
         List<User> allUsers = getAllUsers();

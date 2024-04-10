@@ -5,6 +5,9 @@ public class Post {
     private String postedon; //TODO: Convert type to LocalDateTime
     private String body;
 
+    /**
+     * This is the constructor.
+     */
     public Post() {
     }
 

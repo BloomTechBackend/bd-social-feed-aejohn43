@@ -9,14 +9,26 @@ import java.util.stream.Collectors;
 public class PostRepository {
     private static final String POST_DATA_PATH = "src/resources/PostData.json";
 
+    /**
+     * This is the constructor.
+     */
     public PostRepository() {
     }
 
+    /**
+     *
+     * @return To be comment later.
+     */
     public List<Post> getAllPosts() {
         //TODO: return all posts from the PostData.json file
         return new ArrayList<>();
     }
 
+    /**
+     *
+     * @param username is the username of the user which post we are looking for.
+     * @return
+     */
     public List<Post> findByUsername(String username) {
         return getAllPosts()
                 .stream()

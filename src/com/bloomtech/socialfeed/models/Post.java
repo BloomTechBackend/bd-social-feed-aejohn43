@@ -1,8 +1,10 @@
 package com.bloomtech.socialfeed.models;
 
+import java.time.LocalDateTime;
+
 public class Post {
     private String username;
-    private String postedon; //TODO: Convert type to LocalDateTime
+    private LocalDateTime postedon;
     private String body;
 
     /**
@@ -11,7 +13,13 @@ public class Post {
     public Post() {
     }
 
-    public Post(String username, String postedon, String body) {
+    /**
+     * Create an instance of post with arguments for all of his fields.
+     * @param username is the username of the author of the post.
+     * @param postedon is the DateTime of the post.
+     * @param body is the body of the post.
+     */
+    public Post(String username, LocalDateTime postedon, String body) {
         this.username = username;
         this.postedon = postedon;
         this.body = body;
@@ -25,11 +33,11 @@ public class Post {
         this.username = username;
     }
 
-    public String getPostedon() {
+    public LocalDateTime getPostedon() {
         return postedon;
     }
 
-    public void setPostedon(String postedon) {
+    public void setPostedon(LocalDateTime postedon) {
         this.postedon = postedon;
     }
 

@@ -2,12 +2,16 @@ package com.bloomtech.socialfeed.repositories;
 
 import com.bloomtech.socialfeed.App;
 import com.bloomtech.socialfeed.models.User;
-import com.bloomtech.socialfeed.responses.UserResponse;
 import com.bloomtech.socialfeed.validators.UserInfoValidator;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,9 +22,16 @@ public class UserRepository {
 
     private static final UserInfoValidator userInfoValidator = new UserInfoValidator();
 
+    /**
+     * Is the default constructor but is not used.
+     */
     public UserRepository() {
     }
 
+    /**
+     * Get all the users stocked in the UserData.json.
+     * @return all the Users in the UserRepository.
+     */
     public List<User> getAllUsers() {
         List<User> allUsers = new ArrayList<>();
         //TODO: return parsed list of Users from UserData.json
@@ -30,7 +41,7 @@ public class UserRepository {
             FileReader reader = new FileReader(USER_DATA_PATH);
             BufferedReader bufferedReader = new BufferedReader(reader);
             while ((line = bufferedReader.readLine()) != null) {
-               content += line;
+                content += line;
             }
             bufferedReader.close();
         } catch (IOException e) {

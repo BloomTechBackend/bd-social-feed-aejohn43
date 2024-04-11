@@ -21,7 +21,7 @@ public class UserService {
     /**
      * This is the get  UserByUsername method witch return the user found.
      * @param username is the to be found user's username.
-     * @return
+     * @return the user found with the given username.
      */
     public User getUserByUsername(String username) {
         User user = userRepository.findByUsername(username)
@@ -29,6 +29,10 @@ public class UserService {
         return user;
     }
 
+    /**
+     * This method is saving a new created user.
+     * @param user is the user to be saved.
+     */
     public void save(User user) {
         userInfoValidator.validate(user);
         emailValidator.validate(user.getEmail());

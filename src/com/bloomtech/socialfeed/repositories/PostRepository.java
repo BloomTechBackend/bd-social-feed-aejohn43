@@ -1,12 +1,17 @@
 package com.bloomtech.socialfeed.repositories;
 
-import com.bloomtech.socialfeed.App;
+import com.bloomtech.socialfeed.helpers.LocalDateTimeAdapter;
 import com.bloomtech.socialfeed.models.Post;
-import com.bloomtech.socialfeed.models.User;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +46,7 @@ public class PostRepository {
             e.printStackTrace();
         }
         GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+        Gson gson = builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
 
         Post[] response = gson.fromJson(content, Post[].class);
 
@@ -54,7 +59,7 @@ public class PostRepository {
     /**
      *
      * @param username is the username of the user which post we are looking for.
-     * @return
+     * @return a list of all posts.
      */
     public List<Post> findByUsername(String username) {
         return getAllPosts()
@@ -63,13 +68,18 @@ public class PostRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Add a post to th existing posts.
+     * @param post is the post to be added.
+     * @return all the existing posts.
+     */
     public List<Post> addPost(Post post) {
-        List<Post> allPosts = new ArrayList<>();
+        List<Post> allPosts = getAllPosts();
         allPosts.add(post);
-
         //TODO: Write the new Post data to the PostData.json file
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
         String allposts = gson.toJson(allPosts);
         try {
@@ -79,7 +89,7 @@ public class PostRepository {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        //TODO: Return an updated list of all posts
+        //Return an updated list of all posts
         return getAllPosts();
     }
 }

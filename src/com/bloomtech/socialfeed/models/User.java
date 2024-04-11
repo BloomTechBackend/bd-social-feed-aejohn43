@@ -15,6 +15,9 @@ public class User {
     //transient properties are not written to JSON
     private transient OUserFeed userFeed;
 
+    /**
+     * This is the constructor with no arguments.
+     */
     public User() {
         following = new ArrayList<>();
         userFeed = new OUserFeed(this);

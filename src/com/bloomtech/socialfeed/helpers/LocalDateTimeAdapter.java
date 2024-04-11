@@ -1,5 +1,7 @@
 package com.bloomtech.socialfeed.helpers;
 
+
+
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
